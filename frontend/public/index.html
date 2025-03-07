@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico?v=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Video Transformer Pro - Advanced video conversion and transformation tool"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/favicon.ico?v=1" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Video Transformer Pro</title>
+    
+    <!-- Use the static favicon file that matches the site logo -->
+    <script>
+      // Force browser to reload favicon by adding timestamp parameter
+      const faviconLink = document.querySelector('link[rel="icon"]');
+      if (faviconLink) {
+        faviconLink.href = faviconLink.href + '?t=' + new Date().getTime();
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html> 

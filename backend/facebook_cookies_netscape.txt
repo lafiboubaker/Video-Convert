@@ -1,0 +1,12 @@
+# Netscape HTTP Cookie File
+# This file was generated automatically.
+
+.facebook.com	FALSE	/	TRUE	1772567188.156917	c_user	100006981064102
+.facebook.com	FALSE	/	TRUE	1774959201.607532	datr	V2K8Z0O_rddpA-9X3SOc1C-L
+.facebook.com	FALSE	/	TRUE	1748807188.749917	fr	16bHZnBjm9VQWnaBS.AWXRBGGd3yEwMZifewoc0lEwL_A7PbquYh6nSQ.BnxdNt..AAA.0.0.BnxgcU.AWVIeeCl4Y0
+.facebook.com	FALSE	/	TRUE	0	presence	C%7B%22t3%22%3A%5B%5D%2C%22utc3%22%3A1741031419158%2C%22v%22%3A1%7D
+.facebook.com	FALSE	/	TRUE	1774959239.268505	ps_l	1
+.facebook.com	FALSE	/	TRUE	1774959239.268505	ps_n	1
+.facebook.com	FALSE	/	TRUE	1775591188.156917	sb	e2K8Z0p2iG3icxch6sB-nahT
+.facebook.com	FALSE	/	TRUE	1741636215	wd	1280x863
+.facebook.com	FALSE	/	TRUE	1772567188.156917	xs	42%3Ar7iXGq2iXDz8pw%3A2%3A1741031187%3A-1%3A12221

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Generator</title>
+</head>
+<body>
+  <h1>Favicon Generator</h1>
+  <p>This page will generate a favicon that matches the site logo.</p>
+  <button id="generateBtn">Generate Favicon</button>
+  <a id="downloadLink" style="display: none;">Download Favicon</a>
+  
+  <script>
+    // Create a favicon that matches the logo
+    function createFavicon() {
+      try {
+        // Create canvas element for drawing
+        const canvas = document.createElement('canvas');
+        canvas.width = 64;
+        canvas.height = 64;
+        const ctx = canvas.getContext('2d');
+        
+        // Check if the drawing context exists
+        if (!ctx) {
+          console.error('Failed to get canvas context');
+          return;
+        }
+        
+        // Background with gradient colors
+        const gradient = ctx.createLinearGradient(0, 0, 64, 64);
+        gradient.addColorStop(0, '#4f46e5');  // indigo-600
+        gradient.addColorStop(1, '#9333ea');  // purple-600
+        
+        // Draw background
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.rect(0, 0, 64, 64);
+        ctx.fill();
+        
+        // Apply a slight rotation effect like the logo
+        ctx.save();
+        ctx.translate(32, 32);
+        ctx.rotate(-3 * Math.PI / 180);
+        ctx.translate(-32, -32);
+        
+        // Draw video rectangle with white thick stroke
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.rect(12, 16, 40, 32);
+        ctx.stroke();
+        
+        // Draw first arrow from left
+        ctx.beginPath();
+        ctx.moveTo(24, 32);
+        ctx.lineTo(16, 32);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(16, 32);
+        ctx.lineTo(20, 28);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(16, 32);
+        ctx.lineTo(20, 36);
+        ctx.stroke();
+        
+        // Draw second arrow from right
+        ctx.beginPath();
+        ctx.moveTo(40, 32);
+        ctx.lineTo(48, 32);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(48, 32);
+        ctx.lineTo(44, 28);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(48, 32);
+        ctx.lineTo(44, 36);
+        ctx.stroke();
+        
+        // Draw connecting diagonal line
+        ctx.beginPath();
+        ctx.moveTo(24, 32);
+        ctx.lineTo(40, 32);
+        ctx.stroke();
+        
+        ctx.restore();
+        
+        // Convert to data URL
+        const dataUrl = canvas.toDataURL("image/png");
+        
+        // Create download link
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = dataUrl;
+        downloadLink.download = 'favicon.ico';
+        downloadLink.style.display = 'block';
+        downloadLink.textContent = 'Download Favicon';
+        
+        console.log('New favicon created successfully 🎉');
+        return dataUrl;
+      } catch(e) {
+        console.error('Error creating favicon:', e);
+      }
+    }
+    
+    document.getElementById('generateBtn').addEventListener('click', function() {
+      createFavicon();
+    });
+  </script>
+</body>
+</html> 

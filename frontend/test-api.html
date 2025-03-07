@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Connection Test</h1>
+    
+    <div>
+        <label for="apiUrl">API URL:</label>
+        <input type="text" id="apiUrl" value="http://127.0.0.1:8000" />
+    </div>
+    
+    <div>
+        <label for="videoUrl">Video URL:</label>
+        <input type="text" id="videoUrl" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+    </div>
+    
+    <div>
+        <label for="format">Format:</label>
+        <select id="format">
+            <option value="mp3">MP3</option>
+            <option value="mp4">MP4</option>
+        </select>
+    </div>
+    
+    <button onclick="testConnection()">Test API Connection</button>
+    <button onclick="testConvert()">Test Convert Endpoint</button>
+    
+    <div id="result">Results will appear here...</div>
+    
+    <script>
+        async function testConnection() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const result = document.getElementById('result');
+            
+            result.textContent = 'Testing connection to ' + apiUrl + '...';
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                result.textContent = `Connection test result:
+Status: ${response.status}
+Status Text: ${response.statusText}
+Headers: ${JSON.stringify(Object.fromEntries([...response.headers]), null, 2)}`;
+                
+            } catch (error) {
+                result.textContent = `Connection error: ${error.message}`;
+            }
+        }
+        
+        async function testConvert() {
+            const apiUrl = document.getElementById('apiUrl').value;
+            const videoUrl = document.getElementById('videoUrl').value;
+            const format = document.getElementById('format').value;
+            const result = document.getElementById('result');
+            
+            const fullUrl = `${apiUrl}/convert?url=${encodeURIComponent(videoUrl)}&format=${format}`;
+            result.textContent = 'Calling ' + fullUrl + '...';
+            
+            try {
+                const response = await fetch(fullUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'cors'
+                });
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    result.textContent = `Error: ${response.status} ${response.statusText}\n${errorText}`;
+                    return;
+                }
+                
+                const data = await response.json();
+                result.textContent = `Success! Response data:\n${JSON.stringify(data, null, 2)}`;
+                
+            } catch (error) {
+                result.textContent = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
